@@ -1,0 +1,29 @@
+/% hadoop direcrory
+Swaraj@2003 %/
+
+export HADOOP_CLASSPATH=$(hadoop classpath)
+
+echo $HADOOP_CLASSPATH
+
+hadoop fs -mkdir /WordCountTutorial
+
+hadoop fs -mkdir /WordCountTutorial/Input
+
+ hadoop fs -put 'WordCountTutorial/input_data/input.txt' /WordCountTutorial/Input
+
+ cd WordCountTutorial
+
+2. javac -classpath ${Hadoop_CLASSPATH} -d 'tutorial_classes' 'WordCount.java'
+
+   2.1 if abive command not executed then create new directory
+
+   2.2 mkdir ~/tutorial_classes
+
+    2.3 javac -classpath ${HADOOP_CLASSPATH} -d ~/tutorial_classes WordCount.java
+
+jar -cvf firstTutorial.jar -C tutorial_classes/ .
+
+
+ hadoop jar firstTutorial.jar WordCount /WordCountTutorial/Input /WordCountTutorial/Output
+
+ hadoop dfs -cat /WordCountTutorial/Output/*

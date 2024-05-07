@@ -1,0 +1,14 @@
+hadoop version
+javac version
+start-all.sh
+export HADOOP_CLASSPATH=$(hadoop classpath)
+echo $HADOOP_CLASSPATH
+hadoop dfsadmin -safemode leave
+hadoop fs -mkdir /b1
+hadoop fs -mkdir /b1/Input
+hadoop fs -put  <path of input.txt file> /b1/Input
+cd <path of folder>                                                               # (/home/hadoop/Desktop/Wordcount)
+javac -classpath ${HADOOP_CLASSPATH} -d <classes folder path> <java file path>
+jar -cvf b1.jar -C <class folder>                                                  # (classes/ .)
+hadoop jar <jar file path> <class name in java file> <HDFS_Input> <HDFS_Output>
+hadoop dfs -cat <HDFS_Output>/*
